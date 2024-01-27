@@ -1,3 +1,4 @@
+import myImage1 from "./assets/react-core-concepts.png"
 const reactDescriptions = ["Fundeamental", "Crucial", "core"];
 
 function genRandomInt(max) {
@@ -11,7 +12,9 @@ console.log("Random Index:", randText);
 function NewFunction() {
   return (
     <header>
-      <img src="src/assets/react-core-concepts.png" alt="Stylized atom" />
+      {/* <img src="src/assets/react-core-concepts.png" alt="Stylized atom" /> */}
+      <img src={myImage1} alt="Stylized atom" /> {/* This is more optimized way of loading images */}
+      
       <h1>React Essentials</h1>
       <p>
         {randText} React concepts you will need for almost any app you are
