@@ -4,7 +4,7 @@ import configImg from "./assets/config.png";
 import jsxImg from "./assets/jsx-ui.png";
 import reactCoreConcepts from "./assets/react-core-concepts.png";
 import stateMgmt from "./assets/state-mgmt.png";
-
+import { CORE_CONCEPTS } from "./data";
 
 const reactDescriptions = ["Fundeamental", "Crucial", "core"];
 
@@ -26,6 +26,27 @@ function CoreConcept(props) {
     </li>
   );
 }
+// second way to call a prop
+function CoreConcept2(props) {
+  return(
+    <li>
+      <img src={props.image} />
+      <h2>{props.title}</h2>
+      <p>{props.description}</p>
+    </li>
+  );
+}
+// third way to call a prop
+function CoreConcept3({image, title, description}) {
+  return(
+    <li>
+      <img src={image} />
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </li>
+  );
+}
+
 function NewFunction() {
   return (
     <header>
@@ -63,6 +84,32 @@ function NewFunction() {
             title="Components 4"
             desc="The Core UI 123"
             img={stateMgmt}
+          />
+        </ul>
+      </section>
+
+
+
+{/* In this section I am using another way to call props */}
+      <section id="core-concepts">
+        <h2>Core Concepts 2</h2>
+        <ul>
+          <CoreConcept2
+            title={CORE_CONCEPTS[0].title}
+            description={CORE_CONCEPTS[0].description}
+            image={CORE_CONCEPTS[0].image}
+          />
+          <CoreConcept2 {...CORE_CONCEPTS[1]} />
+          {/* SECOND WAY TO CALL A PROP ABOVE */}
+          <CoreConcept3
+            title="Components 3"
+            description="The Core UI 789"
+            image={jsxImg}
+          />
+          <CoreConcept3
+            title="Components 4"
+            description="The Core UI 123"
+            image={stateMgmt}
           />
         </ul>
       </section>
