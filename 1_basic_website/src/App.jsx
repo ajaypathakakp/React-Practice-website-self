@@ -2,9 +2,15 @@ import { CORE_CONCEPTS } from './data.js';
 import Header from './components/Header.jsx';
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButtons from './components/TabButtons.jsx';
+import { useState } from "react";
+import { EXAMPLES } from './data.js';
 function App() {
+  const [SelectedTopic, setSelectedTopic] = useState()
+  let tabContent = 'Hello all';
   function handleClick(SelectedButton){
-    console.log(SelectedButton);
+    setSelectedTopic(SelectedButton);
+    tabContent = {SelectedButton};
+    // console.log(SelectedButton);
 }
   return (
     <div>
@@ -26,12 +32,23 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-          <TabButtons onSelect={()=> handleClick('comp')}>Components</TabButtons>
-          <TabButtons>JSX</TabButtons>
-          <TabButtons>PROPS</TabButtons>
-          <TabButtons>STATE</TabButtons>
+          <TabButtons onSelect={()=> handleClick('components')}>Components</TabButtons>
+          <TabButtons onSelect={()=> handleClick('jsx')}>JSX</TabButtons>
+          <TabButtons onSelect={()=> handleClick('props')}>PROPS</TabButtons>
+          <TabButtons onSelect={()=> handleClick('state')}>STATE</TabButtons>
           </menu>
         </section>
+        {/* {SelectedTopic} */}
+        {!SelectedTopic ? <h2>Select a text </h2> : <div id="tab-contents">
+          <h2>{EXAMPLES[SelectedTopic].title}</h2>
+          <p>{EXAMPLES[SelectedTopic].description}</p>
+          <pre>
+            <code>
+              {EXAMPLES[SelectedTopic].code}
+            </code>
+          </pre>
+        </div>}
+        
       </main>
     </div>
   );
