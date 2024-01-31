@@ -2,9 +2,12 @@ import { CORE_CONCEPTS } from './data.js';
 import Header from './components/Header.jsx';
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButtons from './components/TabButtons.jsx';
+
 function App() {
+
+  let tabContent = 'Please selecti';
   function handleClick(SelectedButton){
-    console.log(SelectedButton);
+    tabContent = SelectedButton;
 }
   return (
     <div>
@@ -27,11 +30,12 @@ function App() {
           <h2>Examples</h2>
           <menu>
           <TabButtons onSelect={()=> handleClick('comp')}>Components</TabButtons>
-          <TabButtons>JSX</TabButtons>
-          <TabButtons>PROPS</TabButtons>
-          <TabButtons>STATE</TabButtons>
+          <TabButtons onSelect={()=> handleClick('jsx')}>JSX</TabButtons>
+          <TabButtons onSelect={()=> handleClick('props')}>PROPS</TabButtons>
+          <TabButtons onSelect={()=> handleClick('state')}> STATE</TabButtons>
           </menu>
         </section>
+        {tabContent}
       </main>
     </div>
   );
